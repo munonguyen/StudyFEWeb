@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Todo UI</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Times New Roman", serif;
+    }
+
+    .box {
+      width: 510px;
+      height: 580px;
+      background: #6389df;
+      border-radius: 20px;
+      padding: 24px 12px;
+      color: white;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+      font-size: 34px;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px #ddd;
+    }
+
+    .top {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 26px;
+    }
+
+    input[type="text"] {
+      width: 300px;
+      height: 31px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      padding: 4px;
+      font-size: 19px;
+      color: #333;
+      background: white;
+    }
+
+    select {
+      width: 110px;
+      height: 31px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      font-size: 18px;
+      padding-left: 4px;
+      background: white;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 17px;
+      font-weight: bold;
+      margin-bottom: 24px;
+    }
+
+    .status input {
+      width: 14px;
+      height: 14px;
+      margin: 0;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    button {
+      border: none;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 9px;
+      height: 31px;
+      cursor: pointer;
+    }
+
+    .add {
+      width: 110px;
+      background: linear-gradient(to right, #ff6100, #ffb300);
+    }
+
+    .clear {
+      width: 106px;
+      background: linear-gradient(to right, #4cc9bc, #0094b9);
+    }
+
+    .item {
+      height: 57px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      font-size: 18px;
+      font-weight: bold;
+      background: white;
+      color: #333;
+    }
+
+    .task-name {
+      flex: 1;
+    }
+
+    .task-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .task-right button {
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      background: white;
+      color: black;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .badge {
+      width: 88px;
+      height: 30px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 19px;
+      color: white;
+    }
+
+    .todo {
+      background: #c000aa;
+    }
+
+    .done {
+      background: #e4ca00;
+    }
+
+    .icons {
+      display: flex;
+      gap: 8px;
+      font-size: 19px;
+    }
+
+    .icon {
+      width: 23px;
+      height: 24px;
+      background: white;
+      color: black;
+      border: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+    }
+
+    #no-data {
+      text-align: center;
+      font-size: 18px;
+      color: #999;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Thêm Công Việc</h1>
+
+    <div class="top">
+      <input id="valTitle" type="text" placeholder="Thêm Công việc" />
+      <select>
+        <option>All</option>
+      </select>
+    </div>
+
+    <div class="status">
+      <span>status:</span>
+      <input type="radio" name="status" value="Todo" />
+      <span>Todo</span>
+      <input type="radio" name="status" value="Done" />
+      <span>Done</span>
+      <input type="radio" name="status" value="Doing" />
+      <span>Doing</span>
+      <input type="radio" name="status" value="Resolved" />
+      <span>Resolved</span>
+      <input type="radio" name="status" value="Reopen" />
+      <span>Reopen</span>
+    </div>
+
+    <div class="buttons">
+      <button class="add" id="button-add" onclick="handleSubmit()">Thêm</button>
+      <button class="clear" onclick="resetForm()">Clear</button>
+    </div>
+
+    <!-- <div class="item">
+      <div class="task-name">công việc 1</div>>
+      <div class="badge todo">Todo</div>
+      <div class="icons">
+        <div class="icon">✎</div>
+        <div class="icon">🗑</div>
+      </div>
+    </div> -->
+
+    <!-- <div class="item">
+      <div class="task-name">công việc 2</div>
+      <div class="badge done">Done</div>
+      <div class="icons">
+        <div class="icon">✎</div>
+        <div class="icon">🗑</div>
+      </div> -->
+      <div id="renderToDo"></div>
+      <div id="no-data"></div>
+    </div>
+  
+  <script src="main.js"></script>
+
+</body>
+</html>
