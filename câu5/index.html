@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Đăng ký thẻ tín dụng của người dùng</h2>
+    <div>
+        <label for="name">Tên chủ thẻ: </label>
+        <input type="text" placeholder="Nhập tên chủ thẻ" id="name-form" />
+    </div>
+    <div>
+        <label for="email">Email: </label>
+        <input type="text" placeholder="Nhập email người dùng" id="email-form" />
+    </div>
+    <div>
+        <label for="password">Password: </label>
+        <input type="password" placeholder="Nhập mật khẩu" id="pass-form"/>
+    </div>
+    <div>
+        <label for="avatar">Ảnh đại diện: </label>
+        <input type="file" id="avatar-form" />
+    </div>
+    <div>
+        <label for="date">Ngày sinh: </label>
+        <input type="date" id="date-form" />
+    </div>
+    <div>
+        <label for="address">Địa chỉ: </label>
+        <input type="text" placeholer="Nhập địa chỉ người dùng" id="address-form"/>
+    </div>
+    <div>
+        <label>Thu nhập trung bình: </label>
+        <select name="income" id="income-form">
+            <option value="0-10000000">0 - 10,000,000 VND</option>
+            <option value="10000000-50000000">10,000,000 - 50,000,000 VND</option>
+            <option value="50000000-10000000">50,000,000 - 100,000,000 VND</option>
+        </select>
+    </div>
+    <div>
+        <label for="des">Giới thiệu bản thân: </label>
+        <input type="text" placeholder="Giới thiệu bản thân của bạn" id="des-form"/>
+    </div>
+    <div>
+        <label for="name-gender">Giới tính: </label>
+        <input type="radio" name="gender" value="Nam" id="gender-male"/>
+        <label for="gender-male">Nam</label>
+        <input type="radio" name="gender" value="Nữ" id="gender-female"/>
+        <label for="gender-female">Nữ</label>
+    </div>
+    <div>
+        <label> Tình trạng hôn nhân: </label>
+        <select name="marital" id="marital-form">
+            <option value="single" id="marital-single">Độc thân</option>
+            <option value="married" id="marital-married">Đã kết hôn</option>
+            <option value="un-known" id="marital-unknown">Không xác định</option>
+        </select>
+    </div>
+    <div>
+        <label>Thời hạn thẻ: </label>
+        <input type="month" id="expiry-form"/>
+    </div>
+    <div>
+        <button id="submit-btn" onclick="handleSubmit()">Đăng ký</button>
+    </div>
+    <div style="margin-top: 20px; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+        <input type="text" placeholder="Tìm kiếm theo tên hoặc email" id="search-form" />
+        <select id="filter-marital" onchange="handleSearch()">
+            <option value="">-- Tất cả tình trạng --</option>
+            <option value="single">Độc thân</option>
+            <option value="married">Đã kết hôn</option>
+            <option value="un-known">Không xác định</option>
+        </select>
+        <button onclick="handleSearch()">Tìm kiếm</button>
+    </div>
+    <div id="display"></div>
+    <script src="main.js?t=1716271800"></script>
+
+</body>
+</html>
