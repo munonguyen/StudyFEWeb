@@ -14,7 +14,7 @@ const submit = document.getElementById("submit-btn");
 const searchInput = document.getElementById("search-form");
 const filterMaritalInput = document.getElementById("filter-marital");
 let idRecord = null;
-const STORAGE_KEY = "credit-card-records";
+const STORAGE_KEY = "USER_RECORDS";
 let records = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 
 const saveRecords = () => {
@@ -94,13 +94,12 @@ const handleSubmit = () => {
         };
         reader.readAsDataURL(avatarinput.files[0]);
     } else {
-        const oldRecord = records.find(item => item.id === idRecord);
         const record = {
             id: Date.now(),
             name: name,
             email: email,
             password: password,
-            avatar: oldRecord ? oldRecord.avatar : "Chưa chọn",
+            avatar: "Chưa chọn",
             date: date,
             address: address,
             income: income,
@@ -121,10 +120,11 @@ const handleSubmit = () => {
             records = [...newRecords];
             submit.innerText = "Đăng ký";
             idRecord = null;
+            saveRecords();
         } else {
             records.push(record);
+            saveRecords();
         }
-        saveRecords();
         renderTable();
         searchInput.value = '';
         filterMaritalInput.value = '';
@@ -184,7 +184,7 @@ const handleSearch = () => {
         const matchName = r.name.toLowerCase().includes(searchText);
         const matchEmail = r.email.toLowerCase().includes(searchText);
         const matchMarital = selectedMarital ? r.marital === selectedMarital : true;
-        
+         
         return (matchName || matchEmail) && matchMarital;
     });
     

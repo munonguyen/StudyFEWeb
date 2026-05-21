@@ -99,8 +99,6 @@ const handleDetailToDo =(id) =>{
         }
     })
 }
-
-// Hiển thị "No data" khi trang load
 renderToDoList(todos);
 
 
