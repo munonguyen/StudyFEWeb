@@ -48,7 +48,8 @@
       border: 1px solid #ddd;
       padding: 4px;
       font-size: 19px;
-      color: #777;
+      color: #333;
+      background: white;
     }
 
     select {
@@ -104,7 +105,7 @@
 
     .item {
       height: 57px;
-      border: 2px solid rgba(180, 180, 180, 0.6);
+      border: 2px solid #ddd;
       border-radius: 10px;
       margin-bottom: 24px;
       display: flex;
@@ -112,10 +113,33 @@
       padding: 0 8px;
       font-size: 18px;
       font-weight: bold;
+      background: white;
+      color: #333;
     }
 
     .task-name {
       flex: 1;
+    }
+
+    .task-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .task-right button {
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      background: white;
+      color: black;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .badge {
@@ -125,7 +149,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-right: 50px;
       font-size: 19px;
       color: white;
     }
@@ -149,11 +172,18 @@
       height: 24px;
       background: white;
       color: black;
-      border: 1px solid #777;
+      border: 1px solid #ddd;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 15px;
+    }
+
+    #no-data {
+      text-align: center;
+      font-size: 18px;
+      color: #999;
+      padding: 20px;
     }
   </style>
 </head>
@@ -162,7 +192,7 @@
     <h1>Thêm Công Việc</h1>
 
     <div class="top">
-      <input type="text" placeholder="Thêm Công việc" />
+      <input id="valTitle" type="text" placeholder="Thêm Công việc" />
       <select>
         <option>All</option>
       </select>
@@ -170,41 +200,44 @@
 
     <div class="status">
       <span>status:</span>
-      <input type="radio" name="status" />
+      <input type="radio" name="status" value="Todo" />
       <span>Todo</span>
-      <input type="radio" name="status" />
+      <input type="radio" name="status" value="Done" />
       <span>Done</span>
-      <input type="radio" name="status" />
+      <input type="radio" name="status" value="Doing" />
       <span>Doing</span>
-      <input type="radio" name="status" />
+      <input type="radio" name="status" value="Resolved" />
       <span>Resolved</span>
-      <input type="radio" name="status" />
+      <input type="radio" name="status" value="Reopen" />
       <span>Reopen</span>
     </div>
 
     <div class="buttons">
-      <button class="add">Thêm</button>
-      <button class="clear">Clear</button>
+      <button class="add" id="button-add" onclick="handleSubmit()">Thêm</button>
+      <button class="clear" onclick="resetForm()">Clear</button>
     </div>
 
-    <div class="item">
-      <div class="task-name">công việc 1</div>
+    <!-- <div class="item">
+      <div class="task-name">công việc 1</div>>
       <div class="badge todo">Todo</div>
       <div class="icons">
         <div class="icon">✎</div>
         <div class="icon">🗑</div>
       </div>
-    </div>
+    </div> -->
 
-    <div class="item">
+    <!-- <div class="item">
       <div class="task-name">công việc 2</div>
       <div class="badge done">Done</div>
       <div class="icons">
         <div class="icon">✎</div>
         <div class="icon">🗑</div>
-      </div>
+      </div> -->
+      <div id="renderToDo"></div>
+      <div id="no-data"></div>
     </div>
-  </div>
+  
+  <script src="main.js"></script>
+
 </body>
 </html>
-```
