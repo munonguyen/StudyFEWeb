@@ -21,7 +21,7 @@ const saveRecords =  () => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
 }
 
-avatarinput.addEventListener("change", () => {
+avatarinput.onchange = () =>{
     if (!avatarinput.files[0]) {
         deleteAvatar();
         return;
@@ -29,12 +29,26 @@ avatarinput.addEventListener("change", () => {
 
     const reader = new FileReader();
     reader.onload = (e) => {
-        avatarValue = e.target.result;
-        avatarpreview.src = avatarValue;
-        avatarpreviewbox.style.display = "flex";
+        const img = new Image();
+        img.onload = () => {
+            const canvas = document.createElement("canvas");
+            const maxSize = 200;
+            const scale = Math.min(1, maxSize / Math.max(img.width, img.height));
+            canvas.width = img.width * scale;
+            canvas.height = img.height * scale;
+            canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
+            avatarValue = canvas.toDataURL("image/jpeg", 0.7);
+            avatarpreview.src = avatarValue;
+            avatarpreviewbox.style.display = "flex";
+        }
+        img.src = e.target.result;
+    };
+    reader.onerror = () => {
+        alert("Không đọc được file avatar");
+        deleteAvatar();
     };
     reader.readAsDataURL(avatarinput.files[0]);
-});
+}
 
 const deleteAvatar = () => {
     avatarinput.value = "";
