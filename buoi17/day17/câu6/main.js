@@ -133,6 +133,13 @@ const handleCheckOne = (id, checked) => {
                 approved: checked
             };
         }
+        if(checked){
+            listId = [...listId, item.id];
+
+        }else{
+            const newData = ListId.filter(i=>i != item.id);
+            listId = [...newData];
+        }
         return item;
     });
 
