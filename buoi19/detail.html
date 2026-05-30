@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .loader {
+        width: 48px;
+        height: 48px;
+        border: 5px solid #ddd;
+        border-bottom-color: #0d8bf2;
+        border-radius: 50%;
+        display: none;
+        margin: 20px auto;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+      }
+
+      .container {
+        text-align: center;
+      }
+
+      @keyframes rotation {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <span class="loader"></span>
+      <div id="detail-products"></div>
+    </div>
+    <script src="./bai2.js"></script>
+  </body>
+</html>

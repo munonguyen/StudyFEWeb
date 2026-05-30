@@ -5,7 +5,19 @@ const listStatus = document.querySelectorAll("input[type=radio][name=status]");
 const renderToDo = document.getElementById("renderToDo");
 const btnSubmit = document.querySelector("button.add");
 const nodata = document.getElementById("no-data");
+const filterStatus = document.getElementById("filterStatus");
 
+const getFilteredTodos = () => {
+    const status = filterStatus.value;
+    if(status === "All"){
+        return todos;
+    }
+    return todos.filter(item => item.status === status);
+}
+
+const applyFilterToDoList = () => {
+    renderToDoList(getFilteredTodos());
+}
 
 const handleSubmit =() =>{
     const title = valTitle.value;
@@ -46,7 +58,7 @@ const handleSubmit =() =>{
     }
     console.log(formData);
     console.log(todos,"todos");
-    renderToDoList(todos);
+    applyFilterToDoList();
     resetForm();
 
     }
@@ -84,7 +96,7 @@ const handleRemoveToDo =(id) =>{
     console.log(id,'id',todos);
     const newData = todos.filter(i => i.id !=id);
     todos =[...newData]
-    renderToDoList(todos);
+    applyFilterToDoList();
 }
 const handleDetailToDo =(id) =>{
     idToDo = id;
@@ -99,7 +111,7 @@ const handleDetailToDo =(id) =>{
         }
     })
 }
+filterStatus.onchange = applyFilterToDoList;
 renderToDoList(todos);
-
 
 
